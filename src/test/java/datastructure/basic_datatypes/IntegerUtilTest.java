@@ -9,14 +9,14 @@ class IntegerUtilTest {
     @Test
     @DisplayName("Test primitive int equality")
     void whenSameValuesPassedThenReturnTrue() {
-        var isEqual = IntegerUtil.isEqual(5, 5);
+        var isEqual = IntegerUtil.checkWithDoubleEquals(5, 5);
         Assertions.assertTrue(isEqual);
     }
 
     @Test
     @DisplayName("Test primitive int equality")
     void whenDifferentValuesPassedThenReturnFalse() {
-        var isEqual = IntegerUtil.isEqual(5, 6);
+        var isEqual = IntegerUtil.checkWithDoubleEquals(5, 6);
         Assertions.assertFalse(isEqual);
     }
 
@@ -25,16 +25,16 @@ class IntegerUtilTest {
     void whenSameWrapperValuesPassedWithinRangeAndCheckedWithDoubleEqualsThenReturnTrue() {
         Integer val1=127;
         Integer val2=127;
-        var isEqual = IntegerUtil.isEqual(val1, val2);
+        var isEqual = IntegerUtil.checkWithDoubleEquals(val1, val2);
         Assertions.assertTrue(isEqual);
     }
 
     @Test
     @DisplayName("Test Wrapper Integer equalitywith == when values are outside range -127 to 127")
     void whenSameWrapperValuesPassedOutsideRangeAndCheckedWithDoubleEqualsThenReturnFalse() {
-        Integer val1=500;
-        Integer val2=500;
-        var isEqual = IntegerUtil.isEqual(val1, val2);
+        Integer val1=128;
+        Integer val2=128;
+        var isEqual = IntegerUtil.checkWithDoubleEquals(val1, val2);
         Assertions.assertFalse(isEqual);
     }
 
@@ -54,6 +54,15 @@ class IntegerUtilTest {
         Integer val2=500;
         var isEqual = IntegerUtil.checkWithEquals(val1, val2);
         Assertions.assertTrue(isEqual);
+    }
+
+    @Test
+    @DisplayName("Test Wrapper Integer equality when values are outside range -127 to 127")
+    void whenDifferentWrapperValuesPassedOutsideRangeAndCheckedWithEqualsThenReturnFalse() {
+        Integer val1=128;
+        Integer val2=500;
+        var isEqual = IntegerUtil.checkWithEquals(val1, val2);
+        Assertions.assertFalse(isEqual);
     }
 
 }
